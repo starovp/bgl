@@ -38,17 +38,12 @@ class Post(db.Model):
 
 class Match(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
-    game = db.Column(db.String(48))
-    players = db.Column(db.String(128))
+    game = db.Column(db.Integer, db.ForeignKey('game.id'))
+    stats = db.Column(db.JSON)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    winner = db.Column(db.String(32))
-    skill =  db.Column(db.Integer)
 
     def __repr__(self):
         return '<Match {}>'.format(self.id)
-
-    def set_skill(self):
-        self.skill = 1
 
 class Record(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
@@ -57,6 +52,21 @@ class Record(db.Model):
 
     def __repr__(self):
         return '<Record {}>'.format(self.id)
+
+class League(db.Model):
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    lname = db.Column(db.String(32))
+
+    def __repr__(self):
+        return '<League {}>'.format(self.id)
+
+class Game(db.Model):
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    gname = db.Column(db.String(24))
+
+    def __repr__(self):
+        return '<Game {}>'.format(self.id)
 
 @login.user_loader
 def load_user(id):

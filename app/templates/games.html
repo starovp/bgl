@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Games</h1>
+    <table id='gameTable'>
+        {% for game in games %}
+        {% set gipath = 'images/'+game.gname.replace(' ','').lower()+'.jpg' %}
+        <tr class='click-row' data-url="{{url_for('addmatch', game=game.gname, entries=2)}}">
+            <td><img src="{{url_for('static', filename=gipath)}}" class="img-responsive" style="max-height: 150px; height: 70%; width:auto;"></td>
+            <td>{{game.gname}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $("#gameTable").on('click','tr', function (e, row, $element) {
+                window.location = $(this).data('url');
+            });
+        });
+
+        </script>
+
+{% endblock %}

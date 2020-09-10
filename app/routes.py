@@ -1,25 +1,17 @@
 from flask import render_template, request, flash, redirect, url_for
 from app import app, db
-from app.forms import EditProfileForm, LoginForm, RegistrationForm, SubmitMatchForm
-from app.models import User, Match
+from app.forms import EditProfileForm, LoginForm, RegistrationForm, SubmitMatchForm, PowerGridScore, PowerGridForm, FieldList, FormField
+from app.models import User, Match, Game
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+import sys
+import json
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'displayname': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'displayname': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -53,7 +45,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash('Registration successful!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -86,22 +78,33 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
-@app.route('/add_match', methods=['GET', 'POST'])
+@app.route('/games')
 @login_required
-def add_match():
-    form = SubmitMatchForm()
-    if form.validate_on_submit():
-        match = Match(
-            game=form.game.data, 
-            players=form.players.data, 
-            winner=form.winner.data
-            )
-        match.set_skill()
-        db.session.add(match)
-        db.session.commit()
-        flash('The match has been recorded.')
-        return redirect(url_for('index'))
-    return render_template('add_match.html', title='Add Match', form=form)
+def games():
+    games = Game.query.all()
+    return render_template('games.html', title='Add Match', games=games)
+
+@app.route('/addmatch/<game>/<entries>', methods=['GET', 'POST'])
+@login_required
+def addmatch(game, entries):
+    game = Game.query.filter_by(gname=game).first()
+    scoreformname = game.gname.replace(' ','')+'Score'
+    baseformname = game.gname.replace(' ','')+'Form'
+    current_mod = sys.modules[__name__]
+    score_form = getattr(current_mod, scoreformname)
+    base_form = getattr(current_mod, baseformname)
+    class LocalForm(score_form):pass
+    LocalForm.scores = FieldList(FormField(base_form), min_entries=int(entries), max_entries=6)
+    form = LocalForm()
+    if form.submit():
+        scores = form.data['scores']
+        for ele in scores:
+            ele.pop('csrf_token', None)
+        scores = json.dumps(scores)
+        match = Match(game=game.id, stats=scores)
+        flash('Match Recorded!')
+        return redirect(url_for('matches'))
+    return render_template('addmatch.html', title='Add Match', game=game, form=form)
 
 @app.route('/matches')
 @login_required

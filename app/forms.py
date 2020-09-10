@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, TextAreaField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, TextAreaField, SubmitField, FormField, FieldList
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from app.models import User
+from app.game_forms import PowerGridForm
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -14,7 +15,7 @@ class RegistrationForm(FlaskForm):
     displayname = StringField('Display Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    password2 = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -49,7 +50,10 @@ class EditProfileForm(FlaskForm):
 
 class SubmitMatchForm(FlaskForm):
     game = StringField('Game', validators=[DataRequired()])
-    players = StringField('Players', validators=[DataRequired()])
-    winner = StringField('Winner', validators=[DataRequired()])
+    stats = StringField('Test')
     submit = SubmitField('Submit')
     
+class PowerGridScore(FlaskForm):
+    scores = FieldList(FormField(PowerGridForm), max_entries=6)
+    submit = SubmitField('Submit')
+
