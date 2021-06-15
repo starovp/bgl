@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
+    game_mmr = db.Column(db.JSON)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -41,6 +42,7 @@ class Match(db.Model):
     game = db.Column(db.Integer, db.ForeignKey('game.id'))
     stats = db.Column(db.JSON)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    winner = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Match {}>'.format(self.id)
@@ -63,10 +65,22 @@ class League(db.Model):
 
 class Game(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
+    display_name = db.Column(db.String(24))
     gname = db.Column(db.String(24))
+    min_players = db.Column(db.Integer)
+    max_players = db.Column(db.Integer)
+    main_score_field = db.Column(db.String(24))
 
     def __repr__(self):
-        return '<Game {}>'.format(self.id)
+        return '<Game {}-{}>'.format(self.id, self.gname)
+
+class Skill(db.Model):
+    g_id = db.Column(db.Integer, primary_key=True)
+    p_id = db.Column(db.Integer, primary_key=True)
+    mmr = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<MMR {}-{}-{}>'.format(self.g_id, self.p_id, self.mmr)
 
 @login.user_loader
 def load_user(id):

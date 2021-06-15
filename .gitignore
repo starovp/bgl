@@ -1,4 +1,4 @@
-logs/*
-venv/*
-.vscode/*
-app.db
+logs/
+venv/
+.vscode/
+app/app.db

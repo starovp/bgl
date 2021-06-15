@@ -1,82 +1,112 @@
-2020-09-10 01:26:46,827 ERROR: Exception on /addmatch/Power Grid/7 [GET] [in /home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py:1892]
+2021-06-14 20:06:59,551 ERROR: Exception on /matches [GET] [in /home/katze/.local/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
     rv = self.dispatch_request()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask_login/utils.py", line 272, in decorated_view
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/philipp/Documents/bgl/app/routes.py", line 97, in addmatch
-    form = LocalForm()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/wtforms/form.py", line 208, in __call__
-    return type.__call__(cls, *args, **kwargs)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask_wtf/form.py", line 87, in __init__
-    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/wtforms/form.py", line 274, in __init__
-    self.process(formdata, obj, data=data, **kwargs)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/wtforms/form.py", line 131, in process
-    field.process(formdata)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/wtforms/fields/core.py", line 960, in process
-    self._add_entry(formdata)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/wtforms/fields/core.py", line 1020, in _add_entry
-    'You cannot have more than max_entries entries in this FieldList'
-AssertionError: You cannot have more than max_entries entries in this FieldList
-2020-09-10 01:44:42,327 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:47:09,135 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:47:12,784 ERROR: Exception on /addmatch/Power Grid/3 [POST] [in /home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py:1892]
+  File "/home/katze/Documents/projects/bgl/app/routes.py", line 239, in matches
+    return render_template('matches.html', title='Matches', matches=matches, list=list)
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/katze/.local/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/katze/.local/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/katze/.local/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/katze/Documents/projects/bgl/app/templates/matches.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/katze/Documents/projects/bgl/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/home/katze/Documents/projects/bgl/app/templates/matches.html", line 5, in block "content"
+    {% include '_match.html' %}
+  File "/home/katze/Documents/projects/bgl/app/templates/_match.html", line 16, in top-level template code
+    <td>{{ ' ,'.join( match.stats | map(attribute='player') | list  ) }}</td>
+TypeError: sequence item 0: expected str instance, Undefined found
+2021-06-14 20:07:20,729 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:07:27,376 ERROR: Exception on /matches [GET] [in /home/katze/.local/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
     rv = self.dispatch_request()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask_login/utils.py", line 272, in decorated_view
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/philipp/Documents/bgl/app/routes.py", line 99, in addmatch
-    match = Match(game=game.id, stats=form.to_dict(flat=False))
-AttributeError: 'LocalForm' object has no attribute 'to_dict'
-2020-09-10 01:47:33,558 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:48:21,959 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:48:55,957 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:50:30,436 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:54:27,634 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:54:29,616 ERROR: Exception on /addmatch/Power Grid/3 [POST] [in /home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/philipp/Documents/bgl/venv/lib/python3.6/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/philipp/Documents/bgl/app/routes.py", line 99, in addmatch
-    scores = form.data.scores
-AttributeError: 'dict' object has no attribute 'scores'
-2020-09-10 01:54:50,634 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:56:09,192 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:58:23,873 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:59:00,616 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 01:59:19,726 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
-2020-09-10 02:00:31,843 INFO: BGL Stats [in /home/philipp/Documents/bgl/app/__init__.py:34]
+  File "/home/katze/Documents/projects/bgl/app/routes.py", line 239, in matches
+    return render_template('matches.html', title='Matches', matches=matches, list=list)
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/home/katze/.local/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/katze/.local/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/katze/.local/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/katze/.local/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/home/katze/Documents/projects/bgl/app/templates/matches.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/katze/Documents/projects/bgl/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/katze/.local/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/home/katze/Documents/projects/bgl/app/templates/matches.html", line 5, in block "content"
+    {% include '_match.html' %}
+  File "/home/katze/Documents/projects/bgl/app/templates/_match.html", line 16, in top-level template code
+    <td>{{ ' ,'.join( match.stats | map(attribute='player')) }}</td>
+TypeError: sequence item 0: expected str instance, Undefined found
+2021-06-14 20:07:42,208 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:07:51,709 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:08:36,735 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:08:44,870 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:10:11,439 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:10:49,933 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:13:00,280 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:15:19,793 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:16:17,528 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:16:36,921 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:16:55,601 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:17:31,070 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:18:18,925 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:18:53,596 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:19:25,739 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:20:22,802 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:20:55,490 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:22:12,316 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:23:11,357 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:23:50,587 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
+2021-06-14 20:24:13,641 INFO: BGL Stats [in /home/katze/Documents/projects/bgl/app/__init__.py:34]
